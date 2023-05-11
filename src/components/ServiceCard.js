@@ -32,12 +32,12 @@ const ServiceCard = ({ service }) => {
             alt={service.name}
             width={64}
             height={64}
-            className="w-[64px] h-[64px] object-center object-cover rounded-full border border-orange-600"
+            className="w-[64px] h-[64px] object-center object-contain rounded-full border"
           />
         </div>
         <div>
-          <h2 className="font-bold text-orange-600 text-xl">{service.name}</h2>
-          <p>{service.description}</p>
+          <h2 className="font-bold text-gray-700 text-xl">{service.name}</h2>
+          <p className="text-sm text-gray-500">{service.description}</p>
         </div>
         {showRegisterButton && canRegister && (
           <button className="absolute top-2 right-2 bg-orange-600 text-white px-3 py-1 rounded-lg hover:bg-orange-500 transition">
@@ -67,7 +67,8 @@ const ServiceCard = ({ service }) => {
             <BusinessPlanIcon />
           </span>
           <span className="text-orange-600">
-            {formatter.format(service.price / service.maxUsers)} / mes
+            {formatter.format(service.price / service.maxUsers)} /{' '}
+            {service.price / service.maxUsers >= 100 ? 'año' : 'mes'}
           </span>
         </div>
         <div
