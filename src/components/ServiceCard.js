@@ -14,13 +14,11 @@ const formatter = new Intl.NumberFormat('es-MX', {
 const ServiceCard = ({ service }) => {
   const { data: session } = useSession()
 
-  const showRegisterButton =
-    session &&
-    !session.user.subscriptions.some(
-      (subscription) => subscription.serviceId === service.id
-    )
+  const showRegisterButton = !session?.user?.subscriptions?.some(
+    (subscription) => subscription.serviceId === service.id
+  )
 
-  const canRegister = service.maxUsers - service.profiles.length > 0
+  const canRegister = service.maxUsers - service.profiles.length > 0 && session
 
   return (
     <div className="border shadow rounded-lg overflow-hidden text-gray-700">
