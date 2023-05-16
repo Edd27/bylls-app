@@ -60,6 +60,22 @@ const ServiceCard = ({ service }) => {
             />
           </>
         )}
+        {!canRegister && (
+          <>
+            <span
+              className="absolute top-2 right-2 text-orange-600 border border-orange-600 px-3 py-1 rounded-lg"
+              data-tooltip-id={`${service.id}-no-available-tooltip`}
+              data-tooltip-content="Este servicio no se encuentra disponible"
+              data-tooltip-place="top"
+            >
+              No disponible
+            </span>
+            <Tooltip
+              id={`${service.id}-no-available-tooltip`}
+              className="!bg-orange-600 !opacity-100 !z-40"
+            />
+          </>
+        )}
       </header>
       <div className="flex items-center justify-between">
         <div className="flex gap-3 text-lg items-center justify-center p-3 border-r w-full">
