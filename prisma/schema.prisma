@@ -91,8 +91,8 @@ model Module {
 
 model Operation {
   id          String       @id @default(cuid())
-  name        String       @unique
-  code        String       @unique
+  name        String
+  code        String
   module      Module       @relation(fields: [moduleId], references: [id])
   moduleId    String
   status      Boolean      @default(true)

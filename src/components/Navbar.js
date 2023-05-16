@@ -9,6 +9,8 @@ import LogoutIcon from '@/icons/LogoutIcon'
 import PropTypes from 'prop-types'
 import { signOut } from 'next-auth/react'
 import { Fragment } from 'react'
+import UsersIcon from '@/icons/UsersIcon'
+import UserCheckIcon from '@/icons/UserCheckIcon'
 
 const menuItems = [
   {
@@ -16,6 +18,18 @@ const menuItems = [
     icon: PlusIcon,
     href: '/services/create',
     permission: 'CREATE.SERVICES'
+  },
+  {
+    label: 'Usuarios',
+    icon: UsersIcon,
+    href: '/users',
+    permission: 'READ.USERS'
+  },
+  {
+    label: 'Roles',
+    icon: UserCheckIcon,
+    href: '/roles',
+    permission: 'READ.ROLES'
   },
   {
     label: 'Salir',
@@ -68,7 +82,11 @@ const Navbar = ({ openModal, isLoadingUser, user }) => {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Menu.Items className="absolute right-0 w-72 overflow-hidden mt-1 divide-y divide-gray-100 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                <Menu.Items
+                  className={`absolute right-0 w-72 overflow-hidden mt-1 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none ${
+                    permissions.length > 1 ? 'divide-y divide-gray-100' : ''
+                  }`}
+                >
                   <div className="flex items-center space-x-2 py-4 px-4 mb-2">
                     <div className="shrink-0 flex items-center justify-center rounded-full overflow-hidden relative bg-gray-200 w-9 h-9">
                       {user?.image && (

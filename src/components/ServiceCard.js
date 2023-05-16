@@ -20,6 +20,8 @@ const ServiceCard = ({ service }) => {
 
   const canRegister = service.maxUsers - service.profiles.length > 0 && session
 
+  const haveProfiles = service.maxUsers - service.profiles.length > 0
+
   return (
     <div className="border shadow rounded-lg overflow-hidden text-gray-700">
       <header className="flex items-center gap-3 h-fit border-b p-3 relative">
@@ -56,6 +58,22 @@ const ServiceCard = ({ service }) => {
             </span>
             <Tooltip
               id={`${service.id}-tooltip`}
+              className="!bg-orange-600 !opacity-100 !z-40"
+            />
+          </>
+        )}
+        {!haveProfiles && session && showRegisterButton && (
+          <>
+            <span
+              className="absolute top-2 right-2 text-orange-600 border border-orange-600 px-3 py-1 rounded-lg"
+              data-tooltip-id={`${service.id}-no-available-tooltip`}
+              data-tooltip-content="Este servicio no se encuentra disponible"
+              data-tooltip-place="top"
+            >
+              No disponible
+            </span>
+            <Tooltip
+              id={`${service.id}-no-available-tooltip`}
               className="!bg-orange-600 !opacity-100 !z-40"
             />
           </>
